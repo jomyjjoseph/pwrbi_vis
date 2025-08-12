@@ -3,14 +3,14 @@ name: Run Streamlit App
 on:
   push:
     branches:
-      - main  # or 'master' if that's your default branch
+      - main
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }} # Inject secret into environment
     steps:
       - uses: actions/checkout@v3
 
