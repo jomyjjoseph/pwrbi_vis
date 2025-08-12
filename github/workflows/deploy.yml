@@ -1,0 +1,26 @@
+name: Run Streamlit App
+
+on:
+  push:
+    branches:
+      - main  # or 'master' if that's your default branch
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run Streamlit app
+        run: streamlit run visual.py --server.headless true
